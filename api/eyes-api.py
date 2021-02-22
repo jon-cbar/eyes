@@ -3,10 +3,13 @@ import logging
 import socket
 
 
+# This is the API to provide access to the cameras.
+
+
 # It finds IP cameras running in a port.
 # Mask param is something like '192.168.1.0/27'
 # to represent the range where will be looking for.
-def findCameras(mask, port, timeout = 0.1):
+def findCameras(mask, port, timeout=0.1):
     logging.info("Searching for cameras on port %s...", str(port))
     cameras = []
     for host in ipaddress.IPv4Network(mask):
@@ -23,18 +26,24 @@ def findCameras(mask, port, timeout = 0.1):
     return cameras
 
 # It creates an RTSP address to connect to the IP camera.
+
+
 def createRtspUrl(ip, user, password):
     urlFormat = "rtsp://{user}:{password}@{ip}/live/mpeg4"
-    url = urlFormat.format(user = user, password = password, ip = ip)
+    url = urlFormat.format(user=user, password=password, ip=ip)
     return url
 
-logFormat = '%(asctime)s - %(levelname)s: %(message)s'
-logging.basicConfig(format = logFormat, level = logging.INFO)
 
+# Log configuration.
+logFormat = '%(asctime)s - %(levelname)s: %(message)s'
+logging.basicConfig(format=logFormat, level=logging.INFO)
+
+# Find cameras.
 mask = '192.168.1.0/27'
 port = 554
 cameras = findCameras(mask, port)
 
+# Find RTSP urls.
 user = 'user'
 password = 'password'
 for ip in cameras:

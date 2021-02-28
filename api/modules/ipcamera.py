@@ -67,7 +67,7 @@ def getSubnetMask(ip: str, depth: int) -> str:
     elif (depth >= 8):
         subnet = BROKEN_IP[0] + '.0.0.0'
     MASK = subnet + '/' + str(depth)
-    logging.debug("Subnet mask %s.", MASK)
+    logging.debug("Subnet mask: %s.", MASK)
     return MASK
 
 

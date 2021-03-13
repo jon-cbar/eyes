@@ -26,8 +26,8 @@ def findHostsWithPortOpen(mask: str, port: int, timeout: float = 0.1) -> list:
     # This function finds hosts running in the network with a specific port open.
     # Param 'mask' is a subnet mask like '192.168.1.0/27'
     # to represent the range where will be looking for.
-    logging.info("Searching hosts on port %i in %s.", port, mask)
-    logging.info("Please wait, this can take a little time...")
+    logging.debug("Searching hosts on port %i in %s.", port, mask)
+    logging.debug("Please wait, this can take a little time...")
     hosts = []
     NETWORK_HOSTS = ipaddress.IPv4Network(mask).hosts()
     for HOST in NETWORK_HOSTS:
@@ -39,7 +39,7 @@ def findHostsWithPortOpen(mask: str, port: int, timeout: float = 0.1) -> list:
 
 def getLocalIpAddress() -> str:
     # This function finds the local IP address.
-    logging.info("Finding local IP address.")
+    logging.debug("Finding local IP address.")
     ip = '127.0.0.1'
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as SOCKET:
@@ -56,7 +56,7 @@ def getLocalIpAddress() -> str:
 
 def getSubnetMask(ip: str, depth: int) -> str:
     # This function creates a subnet mask from an IP and a depth.
-    logging.info("Creating a subnet mask.")
+    logging.debug("Creating a subnet mask.")
     BROKEN_IP = ip.split('.')
     subnet = '0.0.0.0'
     if (depth >= 24):
@@ -78,7 +78,7 @@ def findRtspCameras(depthMask: int = 27, rtspPort: int = 554, timeout: int = 1) 
     # - Depth Mask: 27, looking for the 32 first IP addresses in a subnet (192.168.0.0/27).
     # - Port: 554, default RTSP streaming port.
     # - Timeout: 1 second.
-    logging.info("Searching for IP cameras with RTSP.")
+    logging.debug("Searching for IP cameras using RTSP.")
     IP = getLocalIpAddress()
     SUBNET_MASK = getSubnetMask(IP, depthMask)
     CAMERAS = findHostsWithPortOpen(

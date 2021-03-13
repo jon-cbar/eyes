@@ -10,7 +10,7 @@ import multiprocessing
 
 def createRandomName() -> str:
     # This function creates a random name.
-    logging.info("Creating a name.")
+    logging.debug("Creating a name.")
     NAME = str(uuid.uuid4())[:8]
     logging.debug("Name: %s.", NAME)
     return NAME
@@ -18,7 +18,7 @@ def createRandomName() -> str:
 
 def createDirectory(directory: str):
     # This function creates a directory.
-    logging.info("Creating a directory·")
+    logging.debug("Creating a directory·")
     try:
         os.mkdir(directory)
     except OSError as error:
@@ -30,7 +30,7 @@ def createDirectory(directory: str):
 
 def removeAll(directory: str):
     # This function removes a directory.
-    logging.info("Remove a directory.")
+    logging.debug("Remove a directory.")
     try:
         shutil.rmtree(directory)
     except OSError as error:
@@ -42,29 +42,28 @@ def removeAll(directory: str):
 
 def clearDirectory(directory: str):
     # This function clear a directory.
-    logging.info("Clearing the directory.")
+    logging.debug("Clearing the directory.")
     removeAll(directory)
     createDirectory(directory)
     logging.debug("%s cleaned up.", directory)
 
 
-def runCommand(command: str):
+def runCommand(command: list):
     # This function runs a command.
-    logging.info("Running an OS subprocess.")
+    logging.debug("Running an OS subprocess.")
     try:
         if (logging.getLogger().getEffectiveLevel() == logging.DEBUG):
             subprocess.run(command, check=True)
         else:
-            subprocess.run(command, check=True, stdout=subprocess.PIPE)
+            subprocess.run(command, check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as error:
-        logging.error("Command was not executed: %s", " ".join(command))
-    else:
-        logging.debug("Command executed: %s", " ".join(command))
+        logging.error("Command %s was not executed.", command[0])
 
 
-def multiprocess(workers: list):
+def startWorkers(workers: list):
     # This function runs multiproscesses.
-    logging.info("Creating and running multiprocess.")
+    logging.debug("Creating and running multiprocess.")
     jobs = []
     for worker in workers:
         process = multiprocessing.Process(

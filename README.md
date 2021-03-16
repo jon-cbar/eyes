@@ -4,8 +4,7 @@
 
 ![Eyes](https://cdn2.iconfinder.com/data/icons/humano2/128x128/apps/gnome-eyes-applet.png)
 
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jon-cbar/eyes?style=flat-square">
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jon-cbar/eyes?style=flat-square">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jon-cbar/eyes?style=flat-square"> | <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jon-cbar/eyes?style=flat-square">
 
 </p>
 

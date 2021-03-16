@@ -1,4 +1,4 @@
-<p align="center">
+<center>
 
 # [Eyes](https://github.com/jon-cbar/eyes/)
 
@@ -6,7 +6,7 @@
 
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jon-cbar/eyes?style=flat-square"> | <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jon-cbar/eyes?style=flat-square">
 
-</p>
+</center>
 
 ## Context, Problem and Solution
 

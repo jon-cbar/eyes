@@ -51,6 +51,20 @@ def removeDirectory(directory: str):
         logging.debug("%s removed.", directory)
 
 
+def writeFile(filename: str, content: str):
+    # This function overrides the content of a file.
+    with open(filename, "w") as file:
+        file.write(content)
+
+
+def readFile(filename: str) -> str:
+    # This function reads the content of a file.
+    content = ""
+    with open(filename, "r") as file:
+        content = file.read()
+    return content
+
+
 def runCommand(command: list):
     # This function runs a command.
     logging.debug("Running a command as an OS subprocess.")

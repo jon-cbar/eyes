@@ -42,9 +42,9 @@ For my case, with use in the home environment, it meets.
 It has a command line tool that makes it easy to convert between [different protocols](http://ffmpeg.org/ffmpeg-protocols.html).
 For example, to translate a RTSP streaming provided by a IP Camera (`192.168.1.2`) into an HLS streaming, you can use this:
 
-'''sh
-ffmpeg -i rtsp://192.168.1.2/live/mpeg4" playlist.m3u8
-'''
+```sh
+ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
+```
 
 ## Architecture Components
 

@@ -43,7 +43,9 @@ logging.info("%i cameras found.", len(cameras))
 
 # Create workers to start an HTTP Web Server and HLS Streaming Cameras.
 workers = []
-template = templating.Template(PUBLIC_DIRECTORY + "/" + TEMPLATE_FILE)
+templateFilePath = PUBLIC_DIRECTORY + "/" + TEMPLATE_FILE
+template = templating.Template(templateFilePath=templateFilePath,
+                               mediaDirectory=MEDIA_DIRECTORY)
 
 # HLS Streaming Cameras.
 if len(cameras) > 0:
@@ -55,11 +57,8 @@ if len(cameras) > 0:
         cameraIDs.append(cameraID)
         logging.debug("Camera ID: %s.", cameraID)
 
-        # Update HTML template with camera data.
-        template.html += "\n<div id=\"c" + cameraID + "\"></div>"
-        template.script += "\nvar c" + cameraID + \
-            " = new Clappr.Player({ source: \"/" + MEDIA_DIRECTORY + "/" + \
-            cameraID + "/playlist.m3u8\", parentId: \"c" + cameraID + "\" });"
+        # Include camera to HTML file
+        template.includeCamera(cameraID)
 
         rtspUrl = streaming.createRtspUrl(
             camera, CAMERA_USER, CAMERA_PASSWORD)

@@ -8,3 +8,12 @@ body {
     background: #000;
     color: #666;
 }
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.camera {
+    border: solid 1px #333;
+}

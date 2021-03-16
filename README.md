@@ -22,8 +22,41 @@ Then, I had two things to do:
 
 I realized that I can make this easy with Python.
 
-## Architecture
-
 ![Architecture Diagram](architecture.png)
+
+## Python
+
+Python is a versatile programming language.
+It has its limitations, but also deliver a lot of things ready at a very low computational cost.
+
+For example, I can start a web server and run commands on the operating system in parallel, using subprocesses and multiprocessing.
+
+### Web Server
+
+To start a web server, I used the [`http.server`](https://docs.python.org/3/library/http.server.html) module.
+As mentioned in the documentation, it is not recommended for use in a production environment, because of resource limitations that ensure better application security.
+
+For my case, with use in the home environment, it meets.
+
+### Concurrent Execution
+
+> [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) package offers concurrency, using subprocesses instead of threads. Due to this, the multiprocessing module allows the programmer to fully leverage multiple processors on a given machine.
+
+### FFmpeg
+
+[ffmpeg](https://www.ffmpeg.org/) is a cross-platform video and audio converter.
+It has a command line tool that makes it easy to convert between [different protocols](http://ffmpeg.org/ffmpeg-protocols.html).
+
+For example, to translate a RTSP streaming provided by a IP Camera (`192.168.1.2`) into an HLS streaming, you can use this:
+
+'''sh
+ffmpeg -i rtsp://192.168.1.2/live/mpeg4" playlist.m3u8
+'''
+
+## Architecture Components
+
+
+
+
 
 

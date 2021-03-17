@@ -18,7 +18,7 @@ Then, I had two things to do:
 1. Translate, for each camera, RTSP streaming into an HLS streaming; and
 2. Run a web server to make the videos available.
 
-I realized that I can make this easy with [Python](https://www.python.org/) and [FFmpeg]((https://www.ffmpeg.org/)).
+I realized that I can make this easy with [Python](https://www.python.org/) and [FFmpeg](https://www.ffmpeg.org/).
 
 ## Python
 
@@ -46,7 +46,7 @@ For example, to translate a RTSP streaming provided by a IP Camera (`192.168.1.2
 ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 ```
 
-## Architecture Components
+## Architecture
 
 ![Architecture Diagram](architecture.png)
 

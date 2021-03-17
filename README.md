@@ -48,5 +48,7 @@ ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 
 ## Architecture
 
-![Architecture Diagram](architecture.png)
+![Architecture Overview](docs/architecture.png)
+
+![Architecture Components](docs/components.png)
 

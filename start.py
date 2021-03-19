@@ -21,7 +21,6 @@ LOGGING_LEVEL = logging.INFO
 
 # Since user and password are sensitives data,
 # they must be set as OS environment variables.
-# On Ubuntu, it is possible add in /etc/environment file, for example.
 CAMERA_USER = os.getenv("IP_CAMERA_USER")
 CAMERA_PASSWORD = os.getenv("IP_CAMERA_PASSWORD")
 

@@ -5,7 +5,7 @@
 ## Context, Problem and Solution
 
 I have some iC3 and iC4 [Intelbras](https://intelbras.com/en) Mibo IP cameras.
-The company makes a mobile application available for [Android](https://play.google.com/store/apps/details?id=com.intelbras) and [iPhone](https://apps.apple.com/app/mibo/id1221971306) to access the cameras using its private cloud.
+Intelbras makes a mobile application available for [Android](https://play.google.com/store/apps/details?id=com.intelbras) and [iPhone](https://apps.apple.com/app/mibo/id1221971306) to access the cameras using its private cloud.
 It works, but I wanted to go further.
 I needed to watch my cameras on the Smart TV, without using a Digital Video Recorder (DVR) for that.
 
@@ -20,35 +20,35 @@ Then, I had two things to do:
 
 I realized that I can make this easy with [Python](https://www.python.org/) and [FFmpeg](https://www.ffmpeg.org/).
 
-## Python
+## Architecture
+
+![Architecture Overview](docs/architecture.png)
+
+### Python
 
 Python is a versatile programming language.
-It has its limitations, but also deliver a lot of things ready at a very low computational cost.
+It has its limitations but also delivers a lot of things ready at a very low computational cost.
 For example, I can start a web server and run commands on the operating system in parallel, using subprocesses and multiprocessing.
 
-### Web Server
+#### Web Server
 
 To start a web server, I used the [`http.server`](https://docs.python.org/3/library/http.server.html) module.
 As mentioned in the documentation, it is not recommended for use in a production environment, because of resource limitations that ensure better application security.
 For my case, with use in the home environment, it meets.
 
-### Concurrent Execution
+#### Concurrent Execution
 
 > [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) package offers concurrency, using subprocesses instead of threads. Due to this, the multiprocessing module allows the programmer to fully leverage multiple processors on a given machine.
 
 ### FFmpeg
 
 `ffmpeg` is a cross-platform video and audio converter.
-It has a command line tool that makes it easy to convert between [different protocols](http://ffmpeg.org/ffmpeg-protocols.html).
-For example, to translate a RTSP streaming provided by an IP Camera (`192.168.1.2`) into an HLS streaming, you can use this:
+It has a command-line tool that makes it easy to convert between [different protocols](http://ffmpeg.org/ffmpeg-protocols.html).
+For example, to translate an RTSP streaming provided by an IP Camera (`192.168.1.2`) into an HLS streaming, you can use this:
 
 ```sh
 ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 ```
-
-## Architecture
-
-![Architecture Overview](docs/architecture.png)
 
 ![Architecture Components](docs/components.png)
 

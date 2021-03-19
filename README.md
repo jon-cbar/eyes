@@ -82,7 +82,7 @@ git clone https://github.com/jon-cbar/eyes.git
 
 ### 4. Start it
 
-The web server requires it to run as a super user. 
+The web server requires it to run as a superuser. 
 
 ```sh
 cd eyes

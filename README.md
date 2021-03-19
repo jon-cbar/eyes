@@ -24,6 +24,14 @@ I realized that I can make this easy with [Python](https://www.python.org/) and 
 
 ![Architecture Overview](docs/architecture.png)
 
+### Technologies
+
+- [Python](https://www.python.org/)
+- [FFmpeg](https://www.ffmpeg.org/)
+- [HTML](https://developer.mozilla.org/docs/Web/HTML)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
 ### Python
 
 Python is a versatile programming language.
@@ -42,7 +50,7 @@ For my case, with use in the home environment, it meets.
 
 ### FFmpeg
 
-`ffmpeg` is a cross-platform video and audio converter.
+FFmpeg is a cross-platform video and audio converter.
 It has a command-line tool that makes it easy to convert between [different protocols](http://ffmpeg.org/ffmpeg-protocols.html).
 For example, to translate an RTSP streaming provided by an IP Camera (`192.168.1.2`) into an HLS streaming, you can use this:
 
@@ -52,3 +60,33 @@ ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 
 ![Architecture Components](docs/components.png)
 
+## How to Use
+
+I coded and tested it on [Ubuntu 20.04.2 LTS](https://ubuntu.com/download/desktop).
+
+### 1. Python 3
+
+Make sure that you have [Python3 installed](https://www.python.org/about/gettingstarted/).
+I used Python 3.8.5.
+
+### 2. FFmpeg
+
+[FFmpeg](https://www.ffmpeg.org/download.html) is necessary too.
+I used FFmpeg 4.2.4-1ubuntu0.1.
+
+### 3. Clone this repository
+
+```sh
+git clone https://github.com/jon-cbar/eyes.git
+```
+
+### 4. Start it
+
+The web server requires it to run as a super user. 
+
+```sh
+cd eyes
+sudo python3 start.py
+```
+
+Then, open `http://{your-local-ip}` with your browser to see the result.

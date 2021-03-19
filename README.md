@@ -65,7 +65,7 @@ ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 - Defines some constants, like `SERVER_PORT`, `MEDIA_DIRECTORY` and `RTSP_PORT`.
 - Gets OS environment variables: `IP_CAMERA_USER` and `IP_CAMERA_PASSWORD`.
 - Sets the log level: info is the default.
-- Cleans media directory: there, the playlists and video segments of each camera will be stored.
+- Cleans media directory: there, the playlists (`.m3u8`) and video segments (`.ts`) of each camera will be stored.
 - Looks for IP cameras running in the network.
 - Creates workers to start:
   - an HTTP Web Server; and

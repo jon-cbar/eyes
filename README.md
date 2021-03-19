@@ -78,21 +78,41 @@ ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 
 I coded and tested it on [Ubuntu 20.04.2 LTS](https://ubuntu.com/download/desktop).
 
-### 0. First All
+### 1. Git, Python and FFmpeg
+
+Make sure that you have [Git](https://git-scm.com/downloads), [Python3](https://www.python.org/about/gettingstarted/), and [FFmpeg](https://www.ffmpeg.org/download.html) installed.
+OS Environment Variables
+
+To install them on Ubuntu, do the following:
+
+```sh
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git
+git --version
+sudo apt-get install python3
+python3 --version
+sudo apt-get install ffmpeg
+ffmpeg -version
+```
+
+I used:
+- Git 2.25.1
+- Python 3.8.5
+- FFmpeg 4.2.4-1ubuntu0.1.
+
+### 2. OS Environment Variables
 
 To make my life easier, I kept all the cameras with the same username and password. 
 Then, since user and password are sensitives data, they must be set as OS environment variables (`IP_CAMERA_USER` and `IP_CAMERA_PASSWORD`), instead of being fixed in the code.
-On Ubuntu, it is possible to add in `/etc/environment` file, for example.
 
-### 1. Python 3
+On Ubuntu, it is possible to add in `/etc/environment` file:
 
-Make sure that you have [Python3 installed](https://www.python.org/about/gettingstarted/).
-I used Python 3.8.5.
-
-### 2. FFmpeg
-
-[FFmpeg](https://www.ffmpeg.org/download.html) is necessary too.
-I used FFmpeg 4.2.4-1ubuntu0.1.
+```sh
+echo "IP_CAMERA_USER=username" | sudo tee -a /etc/environment
+echo "IP_CAMERA_PASSWORD=password" | sudo tee -a /etc/environment
+```
+Restart the operating system.
 
 ### 3. Clone this repository
 

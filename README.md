@@ -60,16 +60,16 @@ ffmpeg -i rtsp://192.168.1.2/live/mpeg4 playlist.m3u8
 
 ![Architecture Components](docs/components.png)
 
-### Workflow (`start` Script)
+### Workflow (Start Script)
 
 - Defines some constants, like `SERVER_PORT`, `MEDIA_DIRECTORY` and `RTSP_PORT`.
 - Gets OS environment variables: `IP_CAMERA_USER` and `IP_CAMERA_PASSWORD`.
-- Sets the log level: `info` is default.
-- Cleans `media` directory: there, the playlists and video segments of each camera will be stored.
+- Sets the log level: info is the default.
+- Cleans media directory: there, the playlists and video segments of each camera will be stored.
 - Looks for IP cameras running in the network.
 - Creates workers to start:
   - an HTTP Web Server; and
-  - HLS Streaming cameras: for each camera:
+  - HLS Streaming cameras. For each camera:
     - Creates a random ID.
     - Includes camera to HTML index file.
 - Starts OS subprocesses from created workers.
@@ -82,7 +82,7 @@ I coded and tested it on [Ubuntu 20.04.2 LTS](https://ubuntu.com/download/deskto
 
 To make my life easier, I kept all the cameras with the same username and password. 
 Then, since user and password are sensitives data, they must be set as OS environment variables (`IP_CAMERA_USER` and `IP_CAMERA_PASSWORD`), instead of being fixed in the code.
-On Ubuntu, it is possible add in `/etc/environment` file, for example.
+On Ubuntu, it is possible to add in `/etc/environment` file, for example.
 
 ### 1. Python 3
 

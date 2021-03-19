@@ -70,8 +70,9 @@ if len(cameras) > 0:
 template.createFile(PUBLIC_DIRECTORY + "/index.html")
 
 # HTTP Web Server.
-logging.info("Creating an HTTP Web Server on port %i.", SERVER_PORT)
 hostName = network.getLocalIpAddress()
+logging.info("Creating an HTTP Web Server on http://%s:%i/",
+             hostName, SERVER_PORT)
 workerArgs = (hostName, SERVER_PORT, PUBLIC_DIRECTORY)
 worker = operatingsystem.Worker(webserver.startServer, workerArgs)
 workers.append(worker)

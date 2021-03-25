@@ -6,11 +6,6 @@ import ipaddress
 
 
 def findHostsInNetwork(depth: int = 27, port: int = 80, timeout: float = 1.0) -> list:
-    # This function finds hosts running in the network with a specific port open.
-    # Default values:
-    # - depth: 27, looking for the 30 first IP addresses in a subnet (192.168.0.0/27).
-    # - port: 80.
-    # - Timeout: 1 second.
     logging.debug("Searching hosts with port %i opened.", port)
     ip = getLocalIpAddress()
     mask = getSubnetMask(ip, depth)
@@ -26,7 +21,6 @@ def findHostsInNetwork(depth: int = 27, port: int = 80, timeout: float = 1.0) ->
 
 
 def getLocalIpAddress() -> str:
-    # This function finds the local IP address.
     logging.debug("Finding local IP address.")
     ip = '127.0.0.1'
     try:
@@ -44,7 +38,6 @@ def getLocalIpAddress() -> str:
 
 
 def getSubnetMask(ip: str, depth: int) -> str:
-    # This function creates a subnet mask from an IP and a depth.
     logging.debug("Creating a subnet mask.")
     splittedIp = ip.split('.')
     subnet = '0.0.0.0'
@@ -61,7 +54,6 @@ def getSubnetMask(ip: str, depth: int) -> str:
 
 
 def isPortOpen(host: str, port: int, timeout: float = 0.1) -> bool:
-    # This function says if a port is open in a host.
     logging.debug("Checking if port %i is open in host %s.", port, host)
     isOpen = False
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as connection:
@@ -72,6 +64,5 @@ def isPortOpen(host: str, port: int, timeout: float = 0.1) -> bool:
             logging.debug("%s:%i is open.", host, port)
             isOpen = True
         except:
-            # logging.debug(error)
             pass
     return isOpen

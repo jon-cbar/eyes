@@ -5,7 +5,6 @@ from modules import operatingsystem
 
 
 def createRtspUrl(ip: str, user: str, password: str) -> str:
-    # This function creates URL to connect with RTSP.
     logging.debug("Creating a RTSP URL.")
     urlFormat = "rtsp://{user}:{password}@{ip}/live/mpeg4"
     url = urlFormat.format(user=user, password=password, ip=ip)
@@ -14,7 +13,6 @@ def createRtspUrl(ip: str, user: str, password: str) -> str:
 
 
 def startHlsStreaming(rtspUrl: str, streamPath: str):
-    # This function starts an HLS streaming.
     logging.debug("Starting a streaming in %s.", streamPath)
     operatingsystem.createDirectory(streamPath)
     command = createHlsCommand(rtspUrl, streamPath)

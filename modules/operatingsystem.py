@@ -8,7 +8,6 @@ import multiprocessing
 
 
 def emptyDirectory(directory: str):
-    # This function empties a directory.
     logging.debug("Emptying a directory.")
     removeDirectory(directory)
     createDirectory(directory)
@@ -16,7 +15,6 @@ def emptyDirectory(directory: str):
 
 
 def startWorkers(workers: list):
-    # This function runs workers.
     logging.debug("Creating and running workers as processes.")
     jobs = []
     for worker in workers:
@@ -28,7 +26,6 @@ def startWorkers(workers: list):
 
 
 def createDirectory(directory: str):
-    # This function creates a directory.
     logging.debug("Creating a directory·")
     try:
         os.mkdir(directory)
@@ -40,7 +37,6 @@ def createDirectory(directory: str):
 
 
 def removeDirectory(directory: str):
-    # This function removes a directory.
     logging.debug("Removing a directory.")
     try:
         shutil.rmtree(directory)
@@ -52,13 +48,11 @@ def removeDirectory(directory: str):
 
 
 def writeFile(filename: str, content: str):
-    # This function overrides the content of a file.
     with open(filename, "w") as file:
         file.write(content)
 
 
 def readFile(filename: str) -> str:
-    # This function reads the content of a file.
     content = ""
     with open(filename, "r") as file:
         content = file.read()
@@ -66,7 +60,6 @@ def readFile(filename: str) -> str:
 
 
 def runCommand(command: list):
-    # This function runs a command.
     logging.debug("Running a command as an OS subprocess.")
     try:
         if (logging.getLogger().getEffectiveLevel() == logging.DEBUG):

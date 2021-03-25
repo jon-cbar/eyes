@@ -8,7 +8,6 @@ from modules import webserver
 from modules import templating
 
 
-# Constant definitions.
 SERVER_PORT = 80
 PUBLIC_DIRECTORY = "public"
 TEMPLATE_FILE = "template.html"
@@ -19,44 +18,36 @@ TIMEOUT = 1.0
 CAMERA_ID_SIZE = 8
 LOGGING_LEVEL = logging.INFO
 
-# Since user and password are sensitives data,
-# they must be set as OS environment variables.
 CAMERA_USER = os.getenv("IP_CAMERA_USER")
 CAMERA_PASSWORD = os.getenv("IP_CAMERA_PASSWORD")
 
-# Log configuration.
 logFormat = '%(asctime)s - %(levelname)s: %(message)s'
 logging.basicConfig(format=logFormat, level=LOGGING_LEVEL)
 logging.info("Starting API...")
 
-# Clean media directory.
 mediaPath = PUBLIC_DIRECTORY + "/" + MEDIA_DIRECTORY
 logging.info("Cleaning the directory %s.", mediaPath)
 operatingsystem.emptyDirectory(mediaPath)
 logging.info("Directory emptied.")
 
-# Look for IP cameras running in the network.
 logging.info("Looking for IP cameras using RTSP...")
 cameras = network.findHostsInNetwork(NETWORK_DEPTH_MASK, RTSP_PORT, TIMEOUT)
 logging.info("%i cameras found.", len(cameras))
 
-# Create workers to start an HTTP Web Server and HLS Streaming Cameras.
-workers = []
 templateFilePath = PUBLIC_DIRECTORY + "/" + TEMPLATE_FILE
 template = templating.Template(templateFilePath=templateFilePath,
                                mediaDirectory=MEDIA_DIRECTORY)
 
-# HLS Streaming Cameras.
+workers = []
+
 if len(cameras) > 0:
     cameraIDs = []
     logging.info("Creating an HLS streaming for each camera.")
     for camera in cameras:
-        # Create a random ID to this camera.
         cameraID = str(uuid.uuid4())[:CAMERA_ID_SIZE]
         cameraIDs.append(cameraID)
         logging.debug("Camera ID: %s.", cameraID)
 
-        # Include camera to HTML file
         template.includeCamera(cameraID)
 
         rtspUrl = streaming.createRtspUrl(
@@ -69,7 +60,6 @@ if len(cameras) > 0:
 
 template.createFile(PUBLIC_DIRECTORY + "/index.html")
 
-# HTTP Web Server.
 hostName = network.getLocalIpAddress()
 logging.info("Creating an HTTP Web Server on http://%s:%i/",
              hostName, SERVER_PORT)
@@ -79,7 +69,6 @@ workers.append(worker)
 
 htmlContent = ""
 
-# Start OS workers.
 logging.info(
     "Starting OS subprocesses from the %i created workers.", len(workers))
 operatingsystem.startWorkers(workers)

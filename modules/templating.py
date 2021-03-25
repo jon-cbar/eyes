@@ -17,7 +17,6 @@ class Template:
         self.mediaDirectory = mediaDirectory
 
     def createFile(self, filename: str):
-        # Creates a file from template and content.
         content = operatingsystem.readFile(self.templateFilePath)
         content = re.sub("{html}", self.html, content)
         content = re.sub("{script}", self.script, content)

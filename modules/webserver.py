@@ -9,7 +9,6 @@ from http.server import SimpleHTTPRequestHandler
 def startServer(hostName: str = "localhost",
                 port: int = 80,
                 publicDirectory: str = "public"):
-    # This function starts a web server.
     logging.debug("Starting a web server...")
 
     logging.debug("Defining the origin directory to start the server.")
@@ -23,7 +22,6 @@ def startServer(hostName: str = "localhost",
         webServer.serve_forever()
 
 
-# This class specializes a Simple HTTP Handler.
 class WebHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if (self.path == '/'):
